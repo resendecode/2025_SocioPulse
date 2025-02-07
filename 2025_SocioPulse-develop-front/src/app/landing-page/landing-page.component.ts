@@ -26,7 +26,11 @@ export class LandingPageComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Données du formulaire:', result);
-        this.client.envoyerRequete('http://localhost:8000/api/login', result);
+        this.client.envoyerRequete('http://localhost:8000/api/login', result).subscribe(
+          response => console.log(response),
+
+          error => console.log(error)
+        );
       } else {
         console.log('La dialog a été fermée sans soumission.');
 

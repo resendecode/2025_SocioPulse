@@ -1,22 +1,26 @@
+
 <div class="register-container">
+  <h1>S'inscrire</h1>
   <form (ngSubmit)="onSubmit()" #registerForm="ngForm">
     <mat-form-field appearance="outline">
-      <mat-label>Email</mat-label>
+      <mat-label>Email :</mat-label>
       <input matInput type="email" name="email" [(ngModel)]="email" required />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Name</mat-label>
+      <mat-label>Nom du compte :</mat-label>
       <input matInput type="text" name="name" [(ngModel)]="name" required />
     </mat-form-field>
 
     <mat-form-field appearance="outline">
-      <mat-label>Password</mat-label>
+      <mat-label>Mot de passe :</mat-label>
       <input matInput type="password" name="password" [(ngModel)]="password" required />
     </mat-form-field>
-
-    <button mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">
-      Register
+    <button class="cancel" mat-raised-button routerLink="/">
+      Annuler
+    </button>
+    <button class="validate" mat-raised-button color="primary" type="submit" [disabled]="!registerForm.valid">
+      Valider
     </button>
   </form>
 </div>
