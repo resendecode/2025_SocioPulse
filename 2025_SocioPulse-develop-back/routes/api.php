@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Laravel\Sanctum\Http\Controllers\CsrfCookieController;
 use App\Http\Controllers\AuthController;
-
+use App\Http\Controllers\ProjectController; 
 /*
 Route::post('/login', function (Request $request) {
     print("Passage dans login");
@@ -23,3 +23,9 @@ Route::middleware('auth:sanctum')->get('/test-auth', function (Request $request)
 
 //route pour le CSRF cookie
 //Route::get('/sanctum/csrf-cookie', [CsrfCookieController::class, 'show']);
+
+//Path for the project requests
+Route::get('/projects', [ProjectController::class, 'index']); // List of available projects
+Route::post('/projects', [ProjectController::class, 'store']); // Create a project
+Route::put('/projects/{id}', [ProjectController::class, 'update']); // Update a project
+Route::delete('/projects/{id}', [ProjectController::class, 'destroy']); // Delete a project
