@@ -5,6 +5,11 @@ import {MatDialog} from '@angular/material/dialog';
 import {LoginModalComponent} from '../login-modal/login-modal.component';
 import {HttpClient} from '@angular/common/http';
 
+interface AuthResponse {
+  token: string;
+}
+
+
 @Component({
   selector: 'app-navbar',
   imports: [
@@ -26,7 +31,11 @@ export class NavbarComponent {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('Données du formulaire:', result);
-        this.http.post('http://localhost:8000/api/login', result);
+        this.http.post<AuthResponse>('http://localhost:8000/api/login', result)
+        .subscribe(response => {
+          const token = response['token'];
+          sessionStorage.setItem('auth_token', token); // Place the token in sessionStorage
+        });
       } else {
         console.log('La dialog a été fermée sans soumission.');
       }

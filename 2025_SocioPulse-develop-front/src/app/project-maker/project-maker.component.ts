@@ -36,7 +36,9 @@ export class ProjectMakerComponent {
   onSubmit(form: any): void {
     if (form.valid) {
       console.log('Project data:', this.project);
-      this.http.post('http://localhost:8000/api/projects', this.project);
+      this.http.post('http://localhost:8000/api/projects', this.project).subscribe(
+        response => console.log(response), 
+        error => console.log(error));;;
       this.router.navigate(['/']);
     }
   }
