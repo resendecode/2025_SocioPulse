@@ -34,7 +34,7 @@
       </mat-error>
     }
   </mat-form-field>
-
+  
   <mat-form-field appearance="fill" style="width: 100%;">
     <mat-label>Confirm Password</mat-label>
     <input matInput type="password" placeholder="Confirm your password" name="confirmPassword" [(ngModel)]="user.confirmPassword" required>
@@ -52,5 +52,6 @@
 
   <div mat-dialog-actions style="justify-content: flex-end;">
     <button mat-button type="submit" [disabled]="!registerForm.valid || user.password !== user.confirmPassword">Register</button>
+
   </div>
 </form>

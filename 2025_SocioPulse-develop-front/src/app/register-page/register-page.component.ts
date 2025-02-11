@@ -34,10 +34,18 @@ export class RegisterPageComponent {
   };
 
   onSubmit(form: any): void {
-    if (form.valid && this.user.password === this.user.confirmPassword) {
+    if (form.valid/* && this.user.password === this.user.confirmPassword*/) {
       console.log('User data:', this.user);
-      this.http.post('http://localhost:8000/api/user', this.user);
-      this.router.navigate(['/login']);
+      this.http.post('http://localhost:8000/api/register', this.user).subscribe({
+        next: () => {
+          console.log("Inscription réussie!");
+          this.router.navigate(['/']);  // ✅ Redirect to home after success
+        },
+        error: (error: any) => {
+          console.error("Erreur lors de l'inscription:", error);
+        }
+      });
+      this.router.navigate(['/']);
     }
   }
 }

@@ -11,6 +11,8 @@ import {MatIcon} from '@angular/material/icon';
 import {MatToolbarRow} from '@angular/material/toolbar';
 interface AuthResponse {
   token: string;
+  name: string;
+  user_id: string;
 }
 
 
@@ -48,7 +50,14 @@ export class NavbarComponent {
         this.http.post<AuthResponse>('http://localhost:8000/api/login', result)
         .subscribe(response => {
           const token = response['token'];
-          sessionStorage.setItem('auth_token', token); // Place the token in sessionStorage
+          const username = response['name'];
+          const user_id = response['user_id'];
+          console.log('Token:', token);
+          console.log('Nom:', username);
+          console.log('ID utilisateur:', user_id);
+          sessionStorage.setItem('auth_token', token);
+          sessionStorage.setItem('user_id',user_id);
+          sessionStorage.setItem('username', username); // Place the token in sessionStorage
         });
       } else {
         console.log('La dialog a été fermée sans soumission.');
