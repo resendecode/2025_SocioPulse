@@ -18,7 +18,7 @@ class AuthController extends Controller
         
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            return response()->json(['token' => $user->createToken('socioPulse')->plainTextToken]);
+            return response()->json(['token' => $user->createToken('socioPulse')->plainTextToken, 'user_id' => $user->id, 'name' => $user->name], 200);
         }
 
         return response()->json(['message' => 'Tu fais quoi là ?'], 401);
@@ -28,7 +28,7 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|string|email|unique:users',
             'name' => 'required|string|max:255',
-            'password' => 'required|string|min:6'
+            'password' => 'required|string|min:6',
         ]); 
 
         $user = User::create([
