@@ -1,10 +1,14 @@
 import {Component, inject} from '@angular/core';
 import {MatToolbar} from '@angular/material/toolbar';
-import {RouterLink} from '@angular/router';
+import {RouterLink, RouterOutlet} from '@angular/router';
 import {MatDialog} from '@angular/material/dialog';
 import {LoginModalComponent} from '../login-modal/login-modal.component';
 import {HttpClient} from '@angular/common/http';
-
+import {MatSidenav,MatSidenavContainer, MatSidenavContent} from '@angular/material/sidenav';
+import {MatListItem, MatNavList} from '@angular/material/list';
+import {MatAnchor, MatIconButton} from '@angular/material/button';
+import {MatIcon} from '@angular/material/icon';
+import {MatToolbarRow} from '@angular/material/toolbar';
 interface AuthResponse {
   token: string;
 }
@@ -14,7 +18,17 @@ interface AuthResponse {
   selector: 'app-navbar',
   imports: [
     MatToolbar,
-    RouterLink
+    RouterLink,
+    MatSidenavContainer,
+    MatNavList,
+    MatListItem,
+    MatAnchor,
+    MatIcon,
+    MatIconButton,
+    MatSidenavContent,
+    MatSidenav,
+    MatToolbarRow,
+    RouterOutlet
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
